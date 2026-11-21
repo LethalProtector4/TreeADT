@@ -1,3 +1,4 @@
+package edu.neumaned.treeadt;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.concurrent.Callable;
@@ -5,6 +6,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import edu.neumaned.treeadt.Node;
+import edu.neumaned.treeadt.TreeLab;
 
 /*
  * Binary Tree Lab: the tester. Given to you. Do not change it.
