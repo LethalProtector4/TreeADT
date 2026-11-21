@@ -16,6 +16,8 @@ public class TreeLab {
 		Node tree = sampleTree();
 		System.out.println("static sum, written in class: " + sum(tree));   // 60
 		System.out.println("your Node.sum():              " + tree.sum()); // 60 when TODO 1 is done
+		
+		sampleTree().levelOrderTraversal();
 	}
 
 	// Computes the sum of all the nodes in the tree with the given root.
@@ -29,6 +31,15 @@ public class TreeLab {
 			return 0;
 		}
 		return root.data + sum(root.left) + sum(root.right);
+	}
+	
+	private static Node negatives() {
+		Node root = new Node(-5);
+		root.left = new Node(-2);
+		root.left.left = new Node(-9);
+		root.right = new Node(-7);
+		root.right.right = new Node(-3);
+		return root;
 	}
 
 	// You should also be testing your code with edge cases.

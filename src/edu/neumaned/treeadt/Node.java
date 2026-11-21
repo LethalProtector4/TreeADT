@@ -1,7 +1,7 @@
 package edu.neumaned.treeadt;
 import java.util.*;
 
-/*
+/*-
  * Binary Tree Lab
  *
  * A node for a binary tree: data, plus references to a left child and a right child.
@@ -24,7 +24,7 @@ class Node {
 	}
 
 	//////////////////////////////////////////////
-	/*
+	/*-
 	 * There are a variety of places we could write Node methods. In this case,
 	 * we are putting them directly into the Node class. In class we wrote
 	 * TreeLab.sum(Node root) as a static method instead, and the syntax was a
@@ -42,7 +42,14 @@ class Node {
 	// not possible for it to be null, but its children could be, and
 	// so we need to watch for that.
 	int sum() {
-		return -1;
+		int total = data;
+		if (left != null) {
+			total += left.sum();
+		}
+		if (right != null) {
+			total += right.sum();
+		}
+		return total;
 	}
 
 	// TODO 2
@@ -50,7 +57,14 @@ class Node {
 	// Ask yourself: how is the number of nodes in the tree related
 	// to the number of nodes in each subtree?
 	int nodeCount() {
-		return -1;
+		int count = 1;
+		if (left != null) {
+			count += left.nodeCount();
+		}
+		if (right != null) {
+			count += right.nodeCount();
+		}
+		return count;
 	}
 
 	// TODO 3
@@ -61,7 +75,14 @@ class Node {
 	// how can I figure out the max?
 	// Careful: the data can be negative.
 	int max() {
-		return -1;
+		int best = data;
+		if (left != null) {
+			best = Math.max(best, left.max());
+		}
+		if (right != null) {
+			best = Math.max(best, right.max());
+		}
+		return best;
 	}
 
 	// TODO 4
@@ -74,13 +95,30 @@ class Node {
 	// the height of a "null" subtree, it can be extremely
 	// convenient to think of that height as -1.
 	int height() {
-		return -1;
+		int left_height = -1;
+		int right_height = -1;
+		if (left != null) {
+			left_height = left.height();
+		}
+		if (right != null) {
+			right_height = right.height();
+		}
+		return 1 + Math.max(left_height, right_height);
 	}
 
 	// TODO 5
 	// Returns true if the key appears anywhere in this tree.
 	// Write recursively.
 	boolean find(int key) {
+		if (data == key) {
+			return true;
+		}
+		if (left != null && left.find(key)) {
+			return true;
+		}
+		if (right != null && right.find(key)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -90,7 +128,13 @@ class Node {
 	// Space separated, all on one line.
 	// Write recursively.
 	void preOrderTraversal() {
-
+		System.out.println(data + " ");
+		if (left != null) {
+			left.preOrderTraversal();
+		}
+		if (right != null) {
+			right.preOrderTraversal();
+		}
 	}
 
 	// TODO 7
@@ -99,7 +143,13 @@ class Node {
 	// Space separated, all on one line.
 	// Write recursively.
 	void postOrderTraversal() {
-
+		if (left != null) {
+			left.postOrderTraversal();
+		}
+		if (right != null) {
+			right.postOrderTraversal();
+		}
+		System.out.println(data + " ");
 	}
 
 	// TODO 8
@@ -108,7 +158,13 @@ class Node {
 	// Space separated, all on one line.
 	// Write recursively.
 	void inOrderTraversal() {
-
+		if (left != null) {
+			left.inOrderTraversal();
+		}
+		System.out.println(data + " ");
+		if (right != null) {
+			right.inOrderTraversal();
+		}
 	}
 
 	// TODO 9
@@ -118,7 +174,7 @@ class Node {
 	// Use a queue and a loop to solve this. Recursion doesn't work
 	// well here.
 	void levelOrderTraversal() {
-
+		
 	}
 
 	// TODO 10
@@ -127,6 +183,14 @@ class Node {
 	// This method must not print anything.
 	// Write recursively.
 	String preOrderTraversalString() {
-		return "";
+		String result = "";
+		result += data + " ";
+		if (left != null) {
+			result += left.preOrderTraversalString();
+		}
+		if (right != null) {
+			result += right.preOrderTraversalString();
+		}
+		return result;
 	}
 }
